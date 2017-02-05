@@ -5,3 +5,10 @@ body{
     background-size: cover;
     background-position: center;
 }
+.sign-in-screen{
+    text-align: center;
+    background-color: rgba(60, 60, 60, 0.5);
+}
+input{
+
+}

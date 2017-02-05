@@ -2,12 +2,14 @@
     <head>
         <link rel='stylesheet' href='./CSS/global.css'>
         <link rel='stylesheet' href='./CSS/login_screen.css'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
         <script async src='./JS/login_screen.js'></script>
         <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
     </head>
 
     <body>
         <form class='sign-in-screen'>
+            <i class='material-icons' style='font-size:60px;'>perm_identity</i><br>
             <input type='text' name='UserInput' placeholder='User Name' onkeyup='pressEnter(event)' required><br><br>
             <input type='password' name='UserInput' placeholder='Password' onkeyup='pressEnter(event)'required><br><br>
             <input type='submit' class='sign-in-btn' value='Sign In'>

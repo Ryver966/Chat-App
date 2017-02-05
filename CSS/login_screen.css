@@ -7,8 +7,33 @@ body{
 }
 .sign-in-screen{
     text-align: center;
-    background-color: rgba(60, 60, 60, 0.5);
+    background-color: rgba(60, 60, 60, 0.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    background-filter: blur(10px);
+}
+.sign-in-screen-txt{
+    position: relative;
+    margin-top: 81.5px;
+    color: #fff;
+    font-size: 45px;
 }
 input{
-
+    width: 70%;
+    height: 10%;
+    background-color: #272727;
+    border: none;
+    color: #fff;
+}
+.sign-in-btn{
+    background-color: #fff;
+    color: #272727;
+}
+.sign-in-btn:hover{
+    background-color: #F97400;
+    color: #fff;
 }

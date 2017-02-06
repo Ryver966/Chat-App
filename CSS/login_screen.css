@@ -60,3 +60,12 @@ input{
     background-color: #F97400;
     float: left;
 }
+.do-some-account-btn{
+    background: none;
+    border: none;
+    height: 20px;
+    width: 150px;
+}
+.do-some-account-btn:hover{
+    color:#F97400;
+}

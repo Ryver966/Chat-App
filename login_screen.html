@@ -18,9 +18,11 @@
         </div>
         <form class='sign-in-form'>
             <p class='in-form-txt'>Welcome</p>
-            <input type='text' name='UserInput' placeholder='User Name' onkeyup='pressEnter(event)' required><br><br>
-            <input type='password' name='UserInput' placeholder=' Password' onkeyup='pressEnter(event)'required><br><br>
-            <input type='submit' class='sign-in-btn' value='Sign In'>
+            <input type='text' name='UserInput' placeholder='User Name' onkeyup='pressEnter(event, "sign-in-btn")' required><br><br>
+            <input type='password' name='UserInput' placeholder=' Password' onkeyup='pressEnter(event, "sign-in-btn")'required><br><br>
+            <input type='submit' class='sign-in-btn' value='Sign In'><br><br><br>
+            <input type='button' class='do-some-account-btn' value='Forgot Password?'><br>
+            <input type='button' class='do-some-account-btn' value='Create New Account'>
         </form>
     </div>
 

@@ -4,6 +4,7 @@ body{
     background-image: url('../img/background.jpeg');
     background-size: cover;
     background-position: center;
+    font-family: 'Montserrat', sans-serif;
 }
 .sign-in-screen{
     text-align: center;
@@ -20,6 +21,7 @@ body{
     position: relative;
     color: #fff;
     font-size: 45px;
+    font-weight: bolder;
 }
 .sign-in-icon{
     margin-top: 40%;
@@ -27,7 +29,7 @@ body{
 .sign-in-form{
     float: right;
     width: 450px;
-    margin-top: -350px;
+    margin-top: -500px;
 }
 input{
     width: 80%;
@@ -35,6 +37,11 @@ input{
     background-color: #272727;
     border: none;
     color: #fff;
+    padding-left: 10px;
+}
+.in-form-txt{
+    font-size: 35px;
+    color: #F97400;
 }
 .sign-in-btn{
     background-color: #F97400;

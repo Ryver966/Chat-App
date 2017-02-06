@@ -1,3 +1,4 @@
+console.log(config);
 function pressEnter(event, element){
     const x = event.keyCode;
     if(x === 13){
@@ -7,6 +8,8 @@ function pressEnter(event, element){
 };
 
 function signIn (){
-    const firebaseRef = firebase.database().ref();
-    firebaseRef.child('User').set('value');
+    const firebaseRef = firebase.database().ref('user');
+    console.log(firebaseRef);
+    firebaseRef.set('test');
+    alert('stop');
 }

@@ -26,9 +26,9 @@ const signInForm = document.getElementsByClassName('sign-in-form')[0];
 const signUpForm = document.getElementsByClassName('sign-up-form')[0];
 const recPassForm = document.getElementsByClassName('recover-password-form')[0];
 
-function signUp() {
-    signInForm.style.display = 'none';
-    signUpForm.style.display= 'block';
+function setDisplayElem(displayElement, noDisplayElement) {
+    document.getElementsByClassName(noDisplayElement)[0].style.display = 'none';
+    document.getElementsByClassName(displayElement)[0].style.display = 'block';
 };
 
 function backToSignIn() {
@@ -56,3 +56,4 @@ function recoverPassword() {
     signInForm.style.display = 'none';
     recPassForm.style.display = 'block';
 }
+

@@ -21,8 +21,8 @@
             <input type='text' name='UserInput' placeholder='User Name' onkeyup='pressEnter(event, "sign-in-btn")' required><br><br>
             <input type='password' name='UserInput' placeholder=' Password' onkeyup='pressEnter(event, "sign-in-btn")'required><br><br>
             <input type='submit' class='sign-btn' onclick='signIn()' value='Sign In'><br><br><br>
-            <input type='button' class='do-some-account-btn' onclick='signUp()' value='Sign Up'><br>
-            <input type='button' class='do-some-account-btn' onclick='recoverPassword()' value='Forgot Password?'>
+            <input type='button' class='do-some-account-btn' onclick='setDisplayElem("sign-up-form", "sign-in-form")' value='Sign Up'><br>
+            <input type='button' class='do-some-account-btn' onclick='setDisplayElem("recover-password-form", "sign-in-form")' value='Forgot Password?'>
         </form>
         <form class='sign-up-form'>
             <p class='in-form-txt'>Sign Up</p>
@@ -30,14 +30,14 @@
             <input type='text' name='signUpInput' placeholder='User Name' required><br><br>
             <input type='password' name='signUpInput' placeholder='Password' reuqired><br><br>
             <input type='submit' class='sign-btn' onclick='newAcc()' value='Sign Up'><br><br><br>
-            <input type='button' class='do-some-account-btn' onclick='backToSignIn()' value='Sign In'>
+            <input type='button' class='do-some-account-btn' onclick='setDisplayElem("sign-in-form", "sign-up-form")' value='Sign In'>
         </form>
         <form class='recover-password-form'>
             <p class='in-form-txt'>Recover Password</p>
             <input type='text' name='recPassInput' placeholder='User Name' required><br><br>
             <input type='email' name='recPassInput' placeholder='E-Mail' required><br><br>
-            <input type='submit' class='sign-btn' onclick='recoveryPassword()' value='Send'><br><br><br>
-            <input type='button' class='do-some-account-btn' onclick='backToSignIn()' value='Sign In'>
+            <input type='submit' class='sign-btn' onclick='resendPass()' value='Send'><br><br><br>
+            <input type='button' class='do-some-account-btn' onclick='setDisplayElem("sign-in-form", "recover-password-form")' value='Sign In'>
         </form>
     </div>
 

@@ -31,12 +31,6 @@ function setDisplayElem(displayElement, noDisplayElement) {
     document.getElementsByClassName(displayElement)[0].style.display = 'block';
 };
 
-function backToSignIn() {
-    signUpForm.style.display = 'none';
-    signInForm.style.display = 'block';
-    recPassForm.style.display = 'none';
-};
-
 function newAcc() {
     const newUserEmail = document.getElementsByName('signUpInput')[0];
     const newUserName = document.getElementsByName('signUpInput')[1];
@@ -52,8 +46,11 @@ function newAcc() {
     }
 }
 
-function recoverPassword() {
-    signInForm.style.display = 'none';
-    recPassForm.style.display = 'block';
+function recoveryPassword() {
+    const userName = document.getElementsByName('recPassInput')[0];
+    const userMail = document.getElementsByName('recPassInput')[1];
+    const firebaseUserEmail = firebaseRef.ref('Users/' + userName.value + '/Email').on('value', snap => {
+        const checkUserEmail = snap.val();
+    });
+    console.log(firebaseUserEmail.value);
 }
-

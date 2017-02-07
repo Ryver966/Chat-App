@@ -24,6 +24,7 @@ function signIn() {
 
 const signInForm = document.getElementsByClassName('sign-in-form')[0];
 const signUpForm = document.getElementsByClassName('sign-up-form')[0];
+const recPassForm = document.getElementsByClassName('recover-password-form')[0];
 
 function signUp() {
     signInForm.style.display = 'none';
@@ -33,6 +34,7 @@ function signUp() {
 function backToSignIn() {
     signUpForm.style.display = 'none';
     signInForm.style.display = 'block';
+    recPassForm.style.display = 'none';
 };
 
 function newAcc() {
@@ -40,9 +42,14 @@ function newAcc() {
     const newUserName = document.getElementsByName('signUpInput')[1];
     const newUserPass = document.getElementsByName('signUpInput')[2];
 
-    firebaseRef.ref(`Users/ ${newUserName.toUpperCase()}`).set({
-        Email: newUserEmail,
-        User_Name: newUserName,
-        Password: newUserName
+    firebaseRef.ref('Users/' + newUserName.value).set({
+        Email: newUserEmail.value,
+        Password: newUserName.value
     });
+    alert('Your account has been created');
+}
+
+function recoverPassword() {
+    signInForm.style.display = 'none';
+    recPassForm.style.display = 'block';
 }

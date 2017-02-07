@@ -1,4 +1,4 @@
-var config = {
+const config = {
     apiKey: "AIzaSyDMu9HckPqtfindUTsuldrjIa4wce2jZ2g",
     authDomain: "chat-app-2fe3b.firebaseapp.com",
     databaseURL: "https://chat-app-2fe3b.firebaseio.com",
@@ -46,11 +46,21 @@ function newAcc() {
     }
 }
 
+function firebaseUserEmail(name){
+    firebaseRef.ref('Users/' + name + '/Email').on('value', function(snapshot){
+        console.log(snapshot.val());
+        slotVal = snapshot.val();
+        return slotVal;
+    });
+    return slotVal;
+}
+
 function recoveryPassword() {
     const userName = document.getElementsByName('recPassInput')[0];
     const userMail = document.getElementsByName('recPassInput')[1];
-    const firebaseUserEmail = firebaseRef.ref('Users/' + userName.value + '/Email').on('value', snap => {
-        const checkUserEmail = snap.val();
-    });
-    console.log(firebaseUserEmail.value);
+    if(userMail.value === firebaseUserEmail(userName.value)){
+        console.log('good');
+    } else {
+        alert('Check user name and e-mail');
+    }
 }

@@ -15,8 +15,20 @@ function pressEnter(event, element) {
 };
 
 function signIn() {
-    const firebaseRef = firebase.database().ref('user');
+    /*const firebaseRef = firebase.database().ref('user');
     console.log(firebaseRef);
-    firebaseRef.set('test');
-    alert('stop');
+    firebaseRef.set('test');*/
+}
+
+const signInForm = document.getElementsByClassName('sign-in-form')[0];
+const signUpForm = document.getElementsByClassName('sign-up-form')[0];
+
+function signUp() {
+    signInForm.style.display = 'none';
+    signUpForm.style.display= 'block';
+}
+
+function backToSignIn() {
+    signUpForm.style.display = 'none';
+    signInForm.style.display = 'block';
 }

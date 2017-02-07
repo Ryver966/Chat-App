@@ -43,13 +43,13 @@ input{
     font-size: 35px;
     color: #F97400;
 }
-.sign-in-btn{
+.sign-btn{
     background-color: #F97400;
     color: #272727;
     width: 70%;
     border-radius: 3px;
 }
-.sign-in-btn:hover{
+.sign-btn:hover{
     background-color: #fff;
     color: #272727;
 }
@@ -68,4 +68,10 @@ input{
 }
 .do-some-account-btn:hover{
     color:#F97400;
+}
+.sign-up-form{
+    display: none;
+    float: right;
+    width: 450px;
+    margin-top: -500px;
 }

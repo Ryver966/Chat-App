@@ -14,6 +14,8 @@ function pressEnter(event, element) {
     };
 };
 
+const firebaseRef = firebase.database();
+
 function signIn() {
     /*const firebaseRef = firebase.database().ref('user');
     console.log(firebaseRef);
@@ -26,9 +28,21 @@ const signUpForm = document.getElementsByClassName('sign-up-form')[0];
 function signUp() {
     signInForm.style.display = 'none';
     signUpForm.style.display= 'block';
-}
+};
 
 function backToSignIn() {
     signUpForm.style.display = 'none';
     signInForm.style.display = 'block';
+};
+
+function newAcc() {
+    const newUserEmail = document.getElementsByName('signUpInput')[0];
+    const newUserName = document.getElementsByName('signUpInput')[1];
+    const newUserPass = document.getElementsByName('signUpInput')[2];
+
+    firebaseRef.ref(`Users/ ${newUserName.toUpperCase()}`).set({
+        Email: newUserEmail,
+        User_Name: newUserName,
+        Password: newUserName
+    });
 }

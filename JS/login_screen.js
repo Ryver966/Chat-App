@@ -47,20 +47,14 @@ function newAcc() {
 }
 
 function firebaseUserEmail(name){
-    firebaseRef.ref('Users/' + name + '/Email').on('value', function(snapshot){
-        console.log(snapshot.val());
-        slotVal = snapshot.val();
-        return slotVal;
-    });
-    return slotVal;
+    firebaseRef.ref('Users/' + name + '/Email').on('value', (snapshot) => {
+        if(document.getElementsByName('recPassInput')[1].value !== (snapshot).val()){
+            return alert('Something gone wrong. Please check fields.');
+        }
+        alert('Sent new password to '+snapshot.val()+'.');
+    })
 }
 
 function recoveryPassword() {
-    const userName = document.getElementsByName('recPassInput')[0];
-    const userMail = document.getElementsByName('recPassInput')[1];
-    if(userMail.value === firebaseUserEmail(userName.value)){
-        console.log('good');
-    } else {
-        alert('Check user name and e-mail');
-    }
+    const test = firebaseUserEmail(document.getElementsByName('recPassInput')[0].value);
 }

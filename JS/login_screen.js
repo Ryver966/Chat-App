@@ -16,10 +16,26 @@ function pressEnter(event, element) {
 
 const firebaseRef = firebase.database();
 
+function firebaseUser(name, msg, checker, userVal) {
+    firebaseRef.ref('Users/' + name + '/' + userVal).on('value', (snapshot) => {
+        if (checker !== (snapshot).val()) {
+            return alert('Something gone wrong. Please check fields.');
+        }
+        alert(msg);
+        if (userVal === 'Password') {
+            window.location.href = './chat.html';
+        }
+    })
+
+}
+
 function signIn() {
-    /*const firebaseRef = firebase.database().ref('user');
-    console.log(firebaseRef);
-    firebaseRef.set('test');*/
+    firebaseUser(
+        document.getElementsByName('userInput')[0].value,
+        'Logged in!',
+        document.getElementsByName('userInput')[1].value,
+        'Password'
+    )
 }
 
 const signInForm = document.getElementsByClassName('sign-in-form')[0];
@@ -35,7 +51,7 @@ function newAcc() {
     const newUserEmail = document.getElementsByName('signUpInput')[0];
     const newUserName = document.getElementsByName('signUpInput')[1];
     const newUserPass = document.getElementsByName('signUpInput')[2];
-    if(newUserEmail.value.length !== 0 && newUserName.value.length !== 0 && newUserPass.value.length !== 0){
+    if (newUserEmail.value.length !== 0 && newUserName.value.length !== 0 && newUserPass.value.length !== 0) {
         firebaseRef.ref('Users/' + newUserName.value).set({
             Email: newUserEmail.value,
             Password: newUserName.value
@@ -46,15 +62,7 @@ function newAcc() {
     }
 }
 
-function firebaseUserEmail(name){
-    firebaseRef.ref('Users/' + name + '/Email').on('value', (snapshot) => {
-        if(document.getElementsByName('recPassInput')[1].value !== (snapshot).val()){
-            return alert('Something gone wrong. Please check fields.');
-        }
-        alert('Sent new password to '+snapshot.val()+'.');
-    })
-}
-
 function recoveryPassword() {
-    const test = firebaseUserEmail(document.getElementsByName('recPassInput')[0].value);
+    firebaseUser(document.getElementsByName('recPassInput')[0].value, 'Sent new password.',
+        document.getElementsByName('recPassInput')[1].value, 'Email');
 }

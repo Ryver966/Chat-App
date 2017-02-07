@@ -63,6 +63,8 @@ function newAcc() {
 }
 
 function recoveryPassword() {
-    firebaseUser(document.getElementsByName('recPassInput')[0].value, 'Sent new password.',
-        document.getElementsByName('recPassInput')[1].value, 'Email');
+    firebaseUser(document.getElementsByName('recPassInput')[0].value, 
+    'Sent new password.',
+    document.getElementsByName('recPassInput')[1].value, 
+    'Email');
 }

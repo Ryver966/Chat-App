@@ -41,12 +41,15 @@ function newAcc() {
     const newUserEmail = document.getElementsByName('signUpInput')[0];
     const newUserName = document.getElementsByName('signUpInput')[1];
     const newUserPass = document.getElementsByName('signUpInput')[2];
-
-    firebaseRef.ref('Users/' + newUserName.value).set({
-        Email: newUserEmail.value,
-        Password: newUserName.value
-    });
-    alert('Your account has been created');
+    if(newUserEmail.value.length !== 0 && newUserName.value.length !== 0 && newUserPass.value.length !== 0){
+        firebaseRef.ref('Users/' + newUserName.value).set({
+            Email: newUserEmail.value,
+            Password: newUserName.value
+        });
+        alert('Your account has been created');
+    } else {
+        alert('Something gone wrong, check all fields')
+    }
 }
 
 function recoverPassword() {

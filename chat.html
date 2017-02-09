@@ -7,12 +7,17 @@
     </head>
 
     <body>
+        <div class='toolbar'>
+            <p>Server Name</p>
+            <input type='button' class='toolbar-button' value='Log Out'>
+        </div>
         <div class='servers-and-user'>
         </div>
         <div class='channels-list'>
         </div>
         <div class='chatting-place'>
-            <input type='text' name='ChatInput' placeholder='Message here...'>
+            <input type='text' class='chat-input' name='ChatInput' placeholder='Message here...'>
+            <input type='button' class='chat-button' name='ChatInput' onclick='sendMsg()' value='Send'>
         </div>
     </body>
 </html>

@@ -4,6 +4,21 @@ body{
     height: 100%;
     background-color: #272727;
 }
+.toolbar{
+    height: 76px;
+    width: calc(100% - 274px);
+    float: right;
+    background-color: #272727;
+    border: 2px solid #F97400;
+    text-align: center;
+}
+.toolbar p{
+    float: left;
+    font-size: 35px;
+}
+.toolbar-button{
+    float: left;
+}
 .servers-and-user{
     width: 70px;
     background-color: #F97400;
@@ -15,22 +30,33 @@ body{
     width: 200px;
     height: 100%;
     min-height: 100%;
-    background-color: #151515;
-    margin-left: 70px;
+    background-color: #191919;
+    float: left;
 }
 .chatting-place{
     width: calc(100% - 270px);
     height: 100%;
-    margin-left: 270px;
     text-align: center;
     float: left;
 }
 
-.chatting-place input{
-    width: 100%;
-    height: 50px;
-    margin-top: calc(100% - 50px);
-    background-color: #151515;
+.chat-input{
+    width: calc(70% - 2px);
+    height: 48px;
+    position: absolute;
+    bottom: 1px;
+    left: 270px;
+    background-color: #272727;
     border:none;
-    border-top: 1px #F97400;
+    border: 1px solid #F97400;
+}
+.chat-button{
+    background-color: #F97400;
+    border: none;
+    color: #272727;
+    position: absolute;
+    bottom: 0px;
+    left: calc(268px + 70%);
+    height: 50px;
+    width: 50px;
 }

@@ -16,11 +16,21 @@ body{
     float: left;
     font-size: 35px;
     position: absolute;
-    top: 23px;
+    top: -23px;
+    color: #fff;
 }
 .toolbar-button{
     float: left;
-    display: inline;
+    margin-left: 250px;
+    background-color: #F97400;
+    color: #272727;
+    border: none;
+    margin-top: 9.5px;
+    height: 75%;
+    width: 76px;
+}
+.toolbar-button:hover{
+    transform: scale(1.4);
 }
 .servers-and-user{
     width: 70px;
@@ -28,6 +38,21 @@ body{
     height: 100%;
     min-height: 100%;
     float: left;
+    text-align: center;
+}
+.add-server-btn{
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    border: none;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #272727;
+    color: #fff;
+    transition: all 0.3s;
+}
+.add-server-btn:hover{
+    border-radius: 25%;
 }
 .channels-list{
     width: 200px;
@@ -53,6 +78,7 @@ body{
     background-color: #272727;
     border:none;
     border: 1px solid #F97400;
+    color: #fff;
 }
 .chat-button{
     background-color: #F97400;
@@ -63,4 +89,7 @@ body{
     left: calc(100% - 50px);
     height: 50px;
     width: 50px;
+}
+.chat-button:hover{
+    color: #fff;
 }

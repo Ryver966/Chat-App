@@ -1,6 +1,5 @@
 <html>
     <head>
-        <link rel='stylesheet' href='./CSS/global.css'>
         <link rel='stylesheet' href='./CSS/chat.css'>
         <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
         <script async src='./JS/chat.js'></script>
@@ -12,11 +11,12 @@
             <input type='button' class='toolbar-button' value='Log Out'>
         </div>
         <div class='servers-and-user'>
+            <input type='button' name='ServersAndUsersBtn' class='add-server-btn' value='+'>
         </div>
         <div class='channels-list'>
         </div>
         <div class='chatting-place'>
-            <input type='text' class='chat-input' name='ChatInput' placeholder='Message here...'>
+            <input type='text' class='chat-input' name='ChatInput' onkeyup='pressEnter(event, "chat-button")' placeholder='Message here...'>
             <input type='button' class='chat-button' name='ChatInput' onclick='sendMsg()' value='Send'>
         </div>
     </body>

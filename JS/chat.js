@@ -7,3 +7,14 @@ const config = {
     messagingSenderId: "694196290722"
 };
 firebase.initializeApp(config);
+
+const modal = document.getElementsByClassName('modal')[0];
+function addServerWindow(){
+    modal.style.display = 'block';
+};
+
+window.onclick = function(event) {
+    if(event.target === modal){
+        modal.style.display = 'none';
+    }
+}

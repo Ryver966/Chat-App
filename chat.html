@@ -7,17 +7,25 @@
 
     <body>
         <div class='toolbar'>
-            <p>Server Name</p>
+            <p>ServerName</p>
             <input type='button' class='toolbar-button' value='Log Out'>
         </div>
         <div class='servers-and-user'>
             <input type='button' name='ServersAndUsersBtn' class='add-server-btn' onclick='addServerWindow()' value='+'>
         </div>
         <div class='channels-list'>
+            <h1>Channels on ServerName</h1>
         </div>
         <div class='chatting-place'>
             <input type='text' class='chat-input' name='ChatInput' onkeyup='pressEnter(event, "chat-button")' placeholder='Message here...'>
             <input type='button' class='chat-button' name='ChatInput' onclick='sendMsg()' value='Send'>
+        </div>
+        <div class='modal'>
+            <div class='modal-content'>
+                <input type='button' name='NewServerBtn' onclick='createServer()' value='Create a server'>
+                <input type='button' name='NewServerBtn' onclick='joinServer()' value='Join a server'>
+            </div>
+            
         </div>
     </body>
 </html>

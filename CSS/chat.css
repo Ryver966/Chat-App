@@ -126,4 +126,17 @@ body{
 .modal-content input:hover{
     background-color: #F99900;
 }
+.create-server{
+    text-align: center;
+    display: none;
+    background-color: #272727;
+    color: #fff;
+    height: 350px;
+    width: 350px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -87.5px;
+    margin-left: -175px;
+}
 

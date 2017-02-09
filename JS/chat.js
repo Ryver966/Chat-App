@@ -16,5 +16,11 @@ function addServerWindow(){
 window.onclick = function(event) {
     if(event.target === modal){
         modal.style.display = 'none';
-    }
+    };
+};
+
+const modalContent = document.getElementsByClassName('modal-content')[0];
+function createServerWindow() {
+    modalContent.style.display = 'none';
+    document.getElementsByClassName('create-server')[0].style.display = 'block';
 }

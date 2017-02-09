@@ -22,10 +22,14 @@
         </div>
         <div class='modal'>
             <div class='modal-content'>
-                <input type='button' name='NewServerBtn' onclick='createServer()' value='Create a server'>
-                <input type='button' name='NewServerBtn' onclick='joinServer()' value='Join a server'>
+                <input type='button' name='NewServerBtn' onclick='createServerWindow()' value='Create a server'>
+                <input type='button' name='NewServerBtn' onclick='joinServerWindow()' value='Join a server'>
             </div>
-            
+            <div class='create-server'>
+                <h1>Create New Server</h1>
+                <input type='text' name='NewServerInput' placeholder='New Server Name'><br><br>
+                <input type='button' class='new-server-btn' onclick='createServer()' value='Create new server'>
+            </div>
         </div>
     </body>
 </html>

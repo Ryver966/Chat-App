@@ -1,27 +1,26 @@
 body{
+    margin: 0;
     width: 100%;
-    height: 950px;
+    height: 100%;
     background-color: #272727;
 }
 .servers-and-user{
-    margin-top: -12px;
     width: 70px;
     background-color: #F97400;
-    height: 950px;
+    height: 100%;
+    min-height: 100%;
     float: left;
 }
 .channels-list{
-    margin-top:  -12px;
     width: 200px;
-    height: 950px;
+    height: 100%;
+    min-height: 100%;
     background-color: #151515;
     margin-left: 70px;
 }
 .chatting-place{
-    max-width: 1550px;
-    width: 100%;
-    margin-top: -962px;
-    height: 950px;
+    width: calc(100% - 270px);
+    height: 100%;
     margin-left: 270px;
     text-align: center;
     float: left;
@@ -30,7 +29,7 @@ body{
 .chatting-place input{
     width: 100%;
     height: 50px;
-    margin-top: 900px;
+    margin-top: calc(100% - 50px);
     background-color: #151515;
     border:none;
     border-top: 1px #F97400;

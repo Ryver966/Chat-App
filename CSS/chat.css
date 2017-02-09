@@ -45,7 +45,7 @@ body{
 }
 
 .chat-input{
-    width: calc(70% - 50px);
+    width: calc(100% - 320px);
     height: 48px;
     position: absolute;
     bottom: 1px;
@@ -60,12 +60,7 @@ body{
     color: #272727;
     position: absolute;
     bottom: 0px;
-    left: calc(70% + 200px);
+    left: calc(100% - 50px);
     height: 50px;
     width: 50px;
-}
-.clock{
-    float: right;
-    position: absolute;
-    top: 80px;
 }

@@ -130,7 +130,7 @@ body{
     text-align: center;
     display: none;
     background-color: #272727;
-    color: #fff;
+    color: #F97400;
     height: 350px;
     width: 350px;
     position: fixed;
@@ -139,4 +139,22 @@ body{
     margin-top: -87.5px;
     margin-left: -175px;
 }
-
+.create-server-input{
+    width: 80%;
+    height: 10%;
+    background-color: #fff;
+    border: none;
+    color: #272727;
+    padding-left: 10px;
+}
+.new-server-btn{
+    height: 10%;
+    width: 70%;
+    border: none;
+    background-color: #F97400;
+    color: #272727;
+    border-radius: 3px;
+}
+.new-server-btn:hover{
+    background-color: #fff;
+}

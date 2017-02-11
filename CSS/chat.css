@@ -67,8 +67,7 @@ body{
 }
 .chatting-place{
     min-width: calc(100% - 270px);
-    height: 100%;
-    min-height: 100%;
+    height: calc(100% - 76px);
     text-align: center;
     float: left;
 }
@@ -82,6 +81,7 @@ body{
     border:none;
     border: 1px solid #F97400;
     color: #fff;
+    padding-left: 5px;
 }
 .chat-button{
     background-color: #F97400;
@@ -95,6 +95,10 @@ body{
 }
 .chat-button:hover{
     background-color: #F99900;
+}
+.messages-place{
+    width: 100%;
+    height: calc(100% - 52px);
 }
 .modal{
     display: none;
@@ -157,4 +161,17 @@ body{
 }
 .new-server-btn:hover{
     background-color: #fff;
+}
+.join-server{
+    text-align: center;
+    display: none;
+    background-color: #272727;
+    color: #F97400;
+    height: 350px;
+    width: 350px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -87.5px;
+    margin-left: -175px;  
 }

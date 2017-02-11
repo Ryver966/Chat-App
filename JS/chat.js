@@ -10,6 +10,8 @@ firebase.initializeApp(config);
 
 const firebaseRef = firebase.database();
 const modal = document.getElementsByClassName('modal')[0];
+const modalContent = document.getElementsByClassName('modal-content')[0];
+
 function addServerWindow(){
     modal.style.display = 'block';
 };
@@ -20,7 +22,6 @@ window.onclick = function(event) {
     };
 };
 
-const modalContent = document.getElementsByClassName('modal-content')[0];
 function createServerWindow() {
     modalContent.style.display = 'none';
     document.getElementsByClassName('create-server')[0].style.display = 'block';
@@ -40,10 +41,18 @@ function addServerBtnToList(name){
 function createServer() {
     const newServerName = document.getElementsByClassName('create-server-input')[0];
     if(newServerName.value.length !== 0){
-        firebaseRef.ref('Servers/' + newServerName.value).set({Canals: 'Canals'});
+        firebaseRef.ref('Servers/' + newServerName.value).set({
+            Canals: 'Canals',
+            Membres: 'Membres'
+        });
         addServerBtnToList(newServerName.value);
         alert('Server Created')
     } else {
         alert("Server name field can't be empty");
     };
+};
+
+function joinServerWindow() {
+    modalContent.style.display = 'none';
+    document.getElementsByClassName('join-server')[0].style.display = 'block';
 };

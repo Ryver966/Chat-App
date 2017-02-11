@@ -18,6 +18,7 @@
             <h1>Channels on ServerName</h1>
         </div>
         <div class='chatting-place'>
+            <div class='messages-place'></div>
             <input type='text' class='chat-input' name='ChatInput' onkeyup='pressEnter(event, "chat-button")' placeholder='Message here...'>
             <input type='button' class='chat-button' name='ChatInput' onclick='sendMsg()' value='Send'>
         </div>
@@ -30,6 +31,11 @@
                 <h1>Create New Server</h1>
                 <input type='text'class='create-server-input' name='NewServerInput' placeholder='New Server Name'><br><br>
                 <input type='button' class='new-server-btn' onclick='createServer()' value='Create new server'>
+            </div>
+            <div class='join-server'>
+                <h1>Join Server</h1>
+                <input type='text' class='create-server-input' name='JoinServerInput' placeholder='Server name'><br><br>
+                <input type='button' class='new-server-btn' onclick='joinServer()' value='Join server'>
             </div>
         </div>
     </body>

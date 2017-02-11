@@ -42,7 +42,7 @@ body{
     float: left;
     text-align: center;
 }
-.add-server-btn{
+.server-btn{
     height: 65px;
     width: 65px;
     border-radius: 50%;
@@ -53,7 +53,7 @@ body{
     color: #fff;
     transition: all 0.3s;
 }
-.add-server-btn:hover{
+.server-btn:hover{
     border-radius: 25%;
 }
 .channels-list{

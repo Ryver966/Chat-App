@@ -26,10 +26,22 @@ function createServerWindow() {
     document.getElementsByClassName('create-server')[0].style.display = 'block';
 };
 
+function addServerBtnToList(name){
+    const list = document.getElementsByClassName('servers-and-user')[0];
+    const newServerBtn = document.createElement('input');
+    newServerBtn.type = 'button';
+    newServerBtn.className = 'server-btn';
+    newServerBtn.name = name;
+    newServerBtn.value = name.charAt(0).toUpperCase();
+    list.appendChild(document.createElement('br'));
+    list.appendChild(newServerBtn);
+};
+
 function createServer() {
     const newServerName = document.getElementsByClassName('create-server-input')[0];
     if(newServerName.value.length !== 0){
         firebaseRef.ref('Servers/' + newServerName.value).set({Canals: 'Canals'});
+        addServerBtnToList(newServerName.value);
         alert('Server Created')
     } else {
         alert("Server name field can't be empty");

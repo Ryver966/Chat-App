@@ -41,10 +41,7 @@ function addServerBtnToList(name){
 function createServer() {
     const newServerName = document.getElementsByClassName('create-server-input')[0];
     if(newServerName.value.length !== 0){
-        firebaseRef.ref('Servers/' + newServerName.value).set({
-            Canals: 'Canals',
-            Membres: 'Membres'
-        });
+        firebaseRef.ref('Servers/' + newServerName.value).set({Canals: 'Canals'});
         addServerBtnToList(newServerName.value);
         alert('Server Created')
     } else {
@@ -60,4 +57,12 @@ function joinServerWindow() {
 function joinServer(){
     const joinServerInput = document.getElementsByClassName('create-server-input')[1];
     firebaseRef.ref('Servers/' + joinServerInput + '/Members').set({})
+}
+
+function createMsgInDatabase(name, msg){
+    firebaseRef.ref('messages/')
+}
+
+function sendMsg() {
+
 }

@@ -7,6 +7,13 @@
     </head>
 
     <body>
+        <div class='welcome-scr'>
+            <form class='welcome-scr-form'>
+                <h1>Welcome</h1>
+                <input type='text' name='UserNameInput' placeholder='User Name' onkeyup='pressEnter(event, "welcome-scr-btn")' required><br><br>
+                <input type='button' class='welcome-scr-btn' onclick='signIn()' value='Sign In'>    
+            </form>
+        </div>
         <div class='toolbar'>
             <p>ServerName</p>
             <input type='button' class='toolbar-button' value='Log Out'>

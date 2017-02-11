@@ -127,6 +127,12 @@ body{
 .messages-place{
     width: 100%;
     height: calc(100% - 52px);
+    text-align: left;
+}
+.msg{
+    font-size: 30px;
+    padding-left: 25px;
+    color: #fff;
 }
 .modal{
     display: none;

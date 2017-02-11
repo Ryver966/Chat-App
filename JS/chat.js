@@ -25,8 +25,13 @@ function signIn() {
     } else {
         document.getElementsByClassName('welcome-scr')[0].style.display = 'none';
         document.getElementsByName('ToolbarTxt')[0].innerHTML = `You are logged as: ${userName.value}`;
+        firebase.auth().signInAnonymously();
     }
 }
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    console.log(firebaseUser);
+})
 
 function addServerWindow(){
     modal.style.display = 'block';
@@ -76,9 +81,29 @@ function joinServer(){
 }
 
 function createMsgInDatabase(name, msg){
-    firebaseRef.ref('messages/')
+    firebaseRef.ref(`message/${msg}`).set({
+        UserName: name,
+        Msg: msg
+    })
+};
+
+function displayMsg(name, msg){
+    firebaseRef.ref(`message/${msg}/Msg`).on('value', (snapshot) => {
+        if((snapshot).val() !== msg){
+            return false;
+        } else {
+            const msgPlace = document.getElementsByClassName('messages-place')[0];
+            const message = document.createElement('p');
+            message.className = 'msg';
+            message.innerHTML = `${name}: ${msg}`;
+            msgPlace.appendChild(message);
+        }
+    })
 }
 
 function sendMsg() {
-
+    const msgInput = document.getElementsByName('ChatInput')[0];
+    createMsgInDatabase(userName.value, msgInput.value);
+    displayMsg(userName.value, msgInput.value);
+    msgInput.value = '';
 }

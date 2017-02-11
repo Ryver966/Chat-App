@@ -56,3 +56,8 @@ function joinServerWindow() {
     modalContent.style.display = 'none';
     document.getElementsByClassName('join-server')[0].style.display = 'block';
 };
+
+function joinServer(){
+    const joinServerInput = document.getElementsByClassName('create-server-input')[1];
+    firebaseRef.ref('Servers/' + joinServerInput + '/Members').set({})
+}

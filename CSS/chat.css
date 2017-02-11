@@ -23,12 +23,16 @@ body{
     margin-left: -150px;
     color: #F97400;
 }
-.welcome-scr-form input{
+.welcome-scr-form-input{
     width: 90%;
     height: 15%;
 }
 .welcome-scr-btn{
     width: 80%;
+    height: 10%;
+    background-color: #F97400;
+    color: #272727;
+    border: none;
 }
 .toolbar{
     height: 76px;
@@ -39,10 +43,8 @@ body{
     text-align: center;
 }
 .toolbar p{
-    float: left;
     font-size: 35px;
-    position: absolute;
-    top: -23px;
+    margin-bottom: 50%;
     color: #fff;
     padding-left: 10px;
 }

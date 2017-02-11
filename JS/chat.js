@@ -11,6 +11,22 @@ firebase.initializeApp(config);
 const firebaseRef = firebase.database();
 const modal = document.getElementsByClassName('modal')[0];
 const modalContent = document.getElementsByClassName('modal-content')[0];
+const userName = document.getElementsByName('UserNameInput')[0];
+
+function pressEnter(event, element){
+    if(event.keyCode === 13){
+        console.log(event.keyCode)
+        document.getElementsByClassName(element)[0].click();
+    }
+}
+function signIn() {
+    if(userName.value.length === 0){
+        alert('You need to lead user name');
+    } else {
+        document.getElementsByClassName('welcome-scr')[0].style.display = 'none';
+        document.getElementsByName('ToolbarTxt')[0].innerHTML = `You are logged as: ${userName.value}`;
+    }
+}
 
 function addServerWindow(){
     modal.style.display = 'block';

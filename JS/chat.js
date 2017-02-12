@@ -87,25 +87,22 @@ function createMsgInDatabase(name, msg){
     })
 };
 
-function displayMsg(name, msg){
+function displayMsg(){
     firebaseRef.ref(`message`).on('child_added', function(snapshot) {
         const snap = snapshot.val();
-        if(snap.Msg !== msg){
-            return false;
-        } else {
-            console.log(snap.Msg);
-            const msgPlace = document.getElementsByClassName('messages-place')[0];
-            const message = document.createElement('p');
-            message.className = 'msg';
-            message.innerHTML = `${snap.UserName}: ${snap.Msg}`;
-            msgPlace.appendChild(message);
-        }
+        console.log(snap.Msg);
+        const msgPlace = document.getElementsByClassName('messages-place')[0];
+        const message = document.createElement('p');
+        message.className = 'msg';
+        message.innerHTML = `${snap.UserName}: ${snap.Msg}`;
+        msgPlace.appendChild(message);
+        msgPlace.appendChild(document.createElement('hr'));
     })
 }
 
 function sendMsg() {
     const msgInput = document.getElementsByName('ChatInput')[0];
     createMsgInDatabase(userName.value, msgInput.value);
-    displayMsg(userName.value, msgInput.value);
     msgInput.value = '';
 }
+displayMsg();

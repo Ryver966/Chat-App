@@ -1,11 +1,12 @@
-const config = {
+const DBconfig = {
     apiKey: "AIzaSyDMu9HckPqtfindUTsuldrjIa4wce2jZ2g",
     authDomain: "chat-app-2fe3b.firebaseapp.com",
     databaseURL: "https://chat-app-2fe3b.firebaseio.com",
     storageBucket: "chat-app-2fe3b.appspot.com",
     messagingSenderId: "694196290722"
 };
-firebase.initializeApp(config);
+firebase.initializeApp(DBconfig);
+
 function pressEnter(event, element) {
     const x = event.keyCode;
     if (x === 13) {
@@ -15,19 +16,6 @@ function pressEnter(event, element) {
 };
 
 const firebaseRef = firebase.database();
-
-firebase.auth().signInAnonymusly().catch(function(error) {
-    const errorCode = error.code;
-    const errorMsg = error.message;
-});
-
-firebase.auth().onAuthStateChanged(function(userName.val) {
-    if(userName.val){
-        const isAnonymus = userName.val.isAnonymus;
-        const uid = userName.val.uid;
-        console.log(userName.val.uid);
-    }; 
-});
 
 function firebaseUser(name, msg, checker, userVal) {
     firebaseRef.ref('Users/' + name + '/' + userVal).on('value', (snapshot) => {
@@ -43,8 +31,9 @@ function firebaseUser(name, msg, checker, userVal) {
 }
 
 function signIn() {
+    const userName = document.getElementsByName('userInput')[0];
     firebaseUser(
-        document.getElementsByName('userInput')[0].value,
+        userName.value,
         'Logged in!',
         document.getElementsByName('userInput')[1].value,
         'Password'
@@ -67,7 +56,7 @@ function newAcc() {
     if (newUserEmail.value.length !== 0 && newUserName.value.length !== 0 && newUserPass.value.length !== 0) {
         firebaseRef.ref('Users/' + newUserName.value).set({
             Email: newUserEmail.value,
-            Password: newUserName.value
+            Password: newUserPass.value
         });
         alert('Your account has been created');
     } else {

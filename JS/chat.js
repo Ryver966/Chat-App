@@ -8,10 +8,10 @@ const config = {
 };
 firebase.initializeApp(config);
 
-const firebaseRef = firebase.database();
+const DBRef = firebase.database();
 const modal = document.getElementsByClassName('modal')[0];
 const modalContent = document.getElementsByClassName('modal-content')[0];
-const userName = document.getElementsByName('UserNameInput')[0];
+const userName = document.getElementsByName('userInput')[0];
 
 function pressEnter(event, element){
     if(event.keyCode === 13){
@@ -19,19 +19,6 @@ function pressEnter(event, element){
         document.getElementsByClassName(element)[0].click();
     }
 }
-function signIn() {
-    if(userName.value.length === 0){
-        alert('You need to lead user name');
-    } else {
-        document.getElementsByClassName('welcome-scr')[0].style.display = 'none';
-        document.getElementsByName('ToolbarTxt')[0].innerHTML = `You are logged as: ${userName.value}`;
-        firebase.auth().signInAnonymously();
-    }
-}
-
-firebase.auth().onAuthStateChanged(firebaseUser => {
-    console.log(firebaseUser);
-})
 
 function addServerWindow(){
     modal.style.display = 'block';
@@ -62,7 +49,7 @@ function addServerBtnToList(name){
 function createServer() {
     const newServerName = document.getElementsByClassName('create-server-input')[0];
     if(newServerName.value.length !== 0){
-        firebaseRef.ref('Servers/' + newServerName.value).set({Canals: 'Canals'});
+        DBRef.ref('Servers/' + newServerName.value).set({Canals: 'Canals'});
         addServerBtnToList(newServerName.value);
         alert('Server Created')
     } else {
@@ -77,18 +64,18 @@ function joinServerWindow() {
 
 function joinServer(){
     const joinServerInput = document.getElementsByClassName('create-server-input')[1];
-    firebaseRef.ref('Servers/' + joinServerInput + '/Members').set({})
+    DBRef.ref('Servers/' + joinServerInput + '/Members').set({})
 }
 
 function createMsgInDatabase(name, msg){
-    firebaseRef.ref(`message`).push({
+    DBRef.ref(`message`).push({
         UserName: name,
         Msg: msg
     })
 };
 
 function displayMsg(){
-    firebaseRef.ref(`message`).on('child_added', function(snapshot) {
+    DBRef.ref(`message`).on('child_added', function(snapshot) {
         const snap = snapshot.val();
         console.log(snap.Msg);
         const msgPlace = document.getElementsByClassName('messages-place')[0];

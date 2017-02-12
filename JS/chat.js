@@ -81,21 +81,23 @@ function joinServer(){
 }
 
 function createMsgInDatabase(name, msg){
-    firebaseRef.ref(`message/${msg}`).set({
+    firebaseRef.ref(`message`).push({
         UserName: name,
         Msg: msg
     })
 };
 
 function displayMsg(name, msg){
-    firebaseRef.ref(`message/${msg}/Msg`).on('value', (snapshot) => {
-        if((snapshot).val() !== msg){
+    firebaseRef.ref(`message`).on('child_added', function(snapshot) {
+        const snap = snapshot.val();
+        if(snap.Msg !== msg){
             return false;
         } else {
+            console.log(snap.Msg);
             const msgPlace = document.getElementsByClassName('messages-place')[0];
             const message = document.createElement('p');
             message.className = 'msg';
-            message.innerHTML = `${name}: ${msg}`;
+            message.innerHTML = `${snap.UserName}: ${snap.Msg}`;
             msgPlace.appendChild(message);
         }
     })

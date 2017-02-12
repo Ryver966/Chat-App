@@ -7,6 +7,8 @@ const DBconfig = {
 };
 firebase.initializeApp(DBconfig);
 
+const auth = firebase.auth();
+
 function pressEnter(event, element) {
     const x = event.keyCode;
     if (x === 13) {
@@ -32,12 +34,9 @@ function firebaseUser(name, msg, checker, userVal) {
 
 function signIn() {
     const userName = document.getElementsByName('userInput')[0];
-    firebaseUser(
-        userName.value,
-        'Logged in!',
-        document.getElementsByName('userInput')[1].value,
-        'Password'
-    )
+    const pass = document.getElementsByName('userInput')[1];
+    auth.signInWithEmailAndPassword(userName.value, pass.value).catch(e => console.log(e.message));
+    window.location.href = './chat.html';
 }
 
 const signInForm = document.getElementsByClassName('sign-in-form')[0];
@@ -54,15 +53,20 @@ function newAcc() {
     const newUserName = document.getElementsByName('signUpInput')[1];
     const newUserPass = document.getElementsByName('signUpInput')[2];
     if (newUserEmail.value.length !== 0 && newUserName.value.length !== 0 && newUserPass.value.length !== 0) {
-        firebaseRef.ref('Users/' + newUserName.value).set({
-            Email: newUserEmail.value,
-            Password: newUserPass.value
-        });
+        auth.createUserWithEmailAndPassword(newUserEmail.value, newUserPass.value).then(user => console.log(user));
         alert('Your account has been created');
     } else {
         alert('Something gone wrong, check all fields')
     }
 }
+
+auth.onAuthStateChanged(firebaseUser =>{
+    if(firebaseUser){
+        console.log(firebaseUser);
+    } else {
+        console.log('not logged in');
+    }
+})
 
 function recoveryPassword() {
     firebaseUser(document.getElementsByName('recPassInput')[0].value, 

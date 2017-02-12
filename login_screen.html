@@ -17,7 +17,7 @@
         </div>
         <form class='sign-in-form'>
             <p class='in-form-txt'>Welcome</p>
-            <input type='text' name='userInput' placeholder='User Name' onkeyup='pressEnter(event, "sign-in-btn")' required><br><br>
+            <input type='email' name='userInput' placeholder='E-Mail' onkeyup='pressEnter(event, "sign-in-btn")' required><br><br>
             <input type='password' name='userInput' placeholder=' Password' onkeyup='pressEnter(event, "sign-btn")'required><br><br>
             <input type='button' class='sign-btn' onclick='signIn()' value='Sign In'><br><br><br>
             <input type='button' class='do-some-account-btn' onclick='setDisplayElem("sign-up-form", "sign-in-form")' value='Sign Up'><br>
@@ -28,7 +28,7 @@
             <input type='email' name='signUpInput' placeholder='E-Mail' required><br><br>
             <input type='text' name='signUpInput' placeholder='User Name' required><br><br>
             <input type='password' name='signUpInput' placeholder='Password' reuqired><br><br>
-            <input type='submit' class='sign-btn' onclick='newAcc()' value='Sign Up'><br><br><br>
+            <input type='button' class='sign-btn' onclick='newAcc()' value='Sign Up'><br><br><br>
             <input type='button' class='do-some-account-btn' onclick='setDisplayElem("sign-in-form", "sign-up-form")' value='Sign In'>
         </form>
         <form class='recover-password-form'>

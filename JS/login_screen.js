@@ -53,13 +53,10 @@ function newAcc() {
     const newUserName = document.getElementsByName('signUpInput')[1];
     const newUserPass = document.getElementsByName('signUpInput')[2];
     if (newUserEmail.value.length !== 0 && newUserName.value.length !== 0 && newUserPass.value.length !== 0) {
-        auth.createUserWithEmailAndPassword(newUserEmail.value, newUserPass.value).catch(function(error){
+        auth.createUserWithEmailAndPassword(newUserEmail.value, newUserPass.value).catch(function(error) {
             console.log('register error', error);
-            if(error.code === 'auth/email-already-in-use' || error.code === 'auth/weak-password'){
-                //const credential = auth.EmailAuthProvider.credential(email, password);
+            if(error.code === 'auth/email-already-in-use' || error.code === 'auth/weak-password') {
                 alert(error.message);
-            } else{
-                alert('Your account has been created');
             }
         });
     } else {

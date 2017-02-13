@@ -7,6 +7,12 @@
     </head>
 
     <body>
+        <div class='welcome-scr'>
+            <div class='welcome-scr-form'>
+                <h1>Welcome</h1>
+                <input type='text' class='welcome-scr-form-input' onkeyup='pressEnter(event, "welcome-scr-btn")' placeholder='Enter Name' required><br><br>
+                <input type='button' class='welcome-scr-btn' onclick='goChat()' value='Go Chat!'>
+            </div>
         </div>
         <div class='toolbar'>
             <p name='ToolbarTxt'></p>
@@ -16,7 +22,7 @@
         </div>
         <div class='channels-list'>
             <h1>Channels on ServerName</h1>
-            <input type='button' class='log-out-btn' onclick='signOut()' value='Sing Out'>
+            <input type='button' class='log-out-btn' onclick='signOut()' value='Sign Out'>
         </div>
         <div class='chatting-place'>
             <div class='messages-place'></div>

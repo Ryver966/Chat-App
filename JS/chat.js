@@ -8,24 +8,33 @@ const config = {
 };
 firebase.initializeApp(config);
 
-const auth = firebase.auth();
-auth.onAuthStateChanged(firebaseUser =>{
-    if(firebaseUser){
-        document.getElementsByName('ToolbarTxt')[0].innerHTML = firebaseUser;
-    } else {
-        console.log('not logged in');
-    }
-})
-
 const DBRef = firebase.database();
 const modal = document.getElementsByClassName('modal')[0];
 const modalContent = document.getElementsByClassName('modal-content')[0];
 const userName = document.getElementsByName('userInput')[0];
+const auth = firebase.auth();
+auth.onAuthStateChanged(firebaseUser =>{
+    if(firebaseUser){
+        console.log(firebaseUser);
+    } else {
+        console.log('not logged in');
+    }
+});
+const nameInput = document.getElementsByClassName('welcome-scr-form-input')[0];
 
 function pressEnter(event, element){
     if(event.keyCode === 13){
         console.log(event.keyCode)
         document.getElementsByClassName(element)[0].click();
+    }
+}
+
+function goChat() {
+    if(nameInput.value.length === 0){
+        alert('You must input name');
+    } else {
+        document.getElementsByClassName('welcome-scr')[0].style.display = 'none';
+        document.getElementsByName('ToolbarTxt')[0].innerHTML = `You are logged as: <span style='color:#F97400;'>${nameInput.value}</span>`
     }
 }
 
@@ -90,7 +99,7 @@ function displayMsg(){
         const msgPlace = document.getElementsByClassName('messages-place')[0];
         const message = document.createElement('p');
         message.className = 'msg';
-        message.innerHTML = `${snap.UserName}: ${snap.Msg}`;
+        message.innerHTML = `<span style='color:#F97400;'>${snap.UserName}:</span> ${snap.Msg}`;
         msgPlace.appendChild(message);
         msgPlace.appendChild(document.createElement('hr'));
     })
@@ -98,7 +107,7 @@ function displayMsg(){
 
 function sendMsg() {
     const msgInput = document.getElementsByName('ChatInput')[0];
-    createMsgInDatabase(userName.value, msgInput.value);
+    createMsgInDatabase(nameInput.value, msgInput.value);
     msgInput.value = '';
 }
 displayMsg();

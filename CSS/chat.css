@@ -93,6 +93,14 @@ body{
     text-align: center;
     color: #fff;
 }
+.log-out-btn{
+    width: 80%;
+    height: 25px;
+    background-color: #F97400;
+    color: #272727;
+    border: none;
+    border-radius: 3px;
+}
 .chatting-place{
     min-width: calc(100% - 270px);
     height: calc(100% - 76px);

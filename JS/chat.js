@@ -8,6 +8,15 @@ const config = {
 };
 firebase.initializeApp(config);
 
+const auth = firebase.auth();
+auth.onAuthStateChanged(firebaseUser =>{
+    if(firebaseUser){
+        document.getElementsByName('ToolbarTxt')[0].innerHTML = firebaseUser;
+    } else {
+        console.log('not logged in');
+    }
+})
+
 const DBRef = firebase.database();
 const modal = document.getElementsByClassName('modal')[0];
 const modalContent = document.getElementsByClassName('modal-content')[0];
@@ -93,3 +102,8 @@ function sendMsg() {
     msgInput.value = '';
 }
 displayMsg();
+
+function signOut() {
+    auth.signOut();
+    window.location.href = './login_screen.html';
+}

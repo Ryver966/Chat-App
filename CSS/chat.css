@@ -137,6 +137,7 @@ body{
     width: 100%;
     height: calc(100% - 52px);
     text-align: left;
+    overflow: auto;
 }
 .msg-place hr{
     display: block;

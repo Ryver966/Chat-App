@@ -101,7 +101,6 @@ function displayMsg(){
         message.className = 'msg';
         message.innerHTML = `<span style='color:#F97400;'>${snap.UserName}:</span> ${snap.Msg}`;
         msgPlace.appendChild(message);
-        msgPlace.appendChild(document.createElement('hr'));
     })
 }
 

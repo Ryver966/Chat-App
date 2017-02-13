@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    </div>
     <div class='sign-in-screen'>
         <div class='logo-column'>
             <i class='material-icons sign-in-icon' style='font-size:180px; color:#fff;'>perm_identity</i><br>
@@ -26,8 +27,8 @@
         <form class='sign-up-form'>
             <p class='in-form-txt'>Sign Up</p>
             <input type='email' name='signUpInput' placeholder='E-Mail' required><br><br>
-            <input type='text' name='signUpInput' placeholder='User Name' required><br><br>
-            <input type='password' name='signUpInput' placeholder='Password' reuqired><br><br>
+            <input type='password' name='signUpInput' placeholder='Password' required><br><br>
+            <input type='password' name='signUpInput' placeholder='Confirm Password' reuqired><br><br>
             <input type='button' class='sign-btn' onclick='newAcc()' value='Sign Up'><br><br><br>
             <input type='button' class='do-some-account-btn' onclick='setDisplayElem("sign-in-form", "sign-up-form")' value='Sign In'>
         </form>
@@ -39,7 +40,11 @@
             <input type='button' class='do-some-account-btn' onclick='setDisplayElem("sign-in-form", "recover-password-form")' value='Sign In'>
         </form>
     </div>
-
+    <div class='created-acc-scr-modal'>
+        <div class='created-acc-scr'>
+            <h1>!!Congratulations!!</h1>
+            <p>Your account has been created</p>
+        </div>
 </body>
 
 </html>

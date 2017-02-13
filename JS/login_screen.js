@@ -8,6 +8,7 @@ const DBconfig = {
 firebase.initializeApp(DBconfig);
 
 const auth = firebase.auth();
+const newAccModal = document.getElementsByClassName('created-acc-scr-modal')[0];
 
 function pressEnter(event, element) {
     const x = event.keyCode;
@@ -22,7 +23,7 @@ const firebaseRef = firebase.database();
 function firebaseUser(name, msg, checker, userVal) {
     firebaseRef.ref('Users/' + name + '/' + userVal).on('value', (snapshot) => {
         if (checker !== (snapshot).val()) {
-            return alert('Something gone wrong. Please check fields.');
+            alert('Something gone wrong. Please check fields.');
         }
         alert(msg);
         if (userVal === 'Password') {
@@ -35,8 +36,16 @@ function firebaseUser(name, msg, checker, userVal) {
 function signIn() {
     const userName = document.getElementsByName('userInput')[0];
     const pass = document.getElementsByName('userInput')[1];
-    auth.signInWithEmailAndPassword(userName.value, pass.value).catch(e => console.log(e.message));
-    window.location.href = './chat.html';
+    auth.signInWithEmailAndPassword(userName.value, pass.value)
+        .then(function (success) {
+            window.location.href = './chat.html';
+        })
+        .catch(function (error) {
+            console.log(error);
+            if (error.code === 'auth/wrong-password') {
+                alert(error.message);
+            }
+        });
 }
 
 const signInForm = document.getElementsByClassName('sign-in-form')[0];
@@ -50,31 +59,45 @@ function setDisplayElem(displayElement, noDisplayElement) {
 
 function newAcc() {
     const newUserEmail = document.getElementsByName('signUpInput')[0];
-    const newUserName = document.getElementsByName('signUpInput')[1];
-    const newUserPass = document.getElementsByName('signUpInput')[2];
-    if (newUserEmail.value.length !== 0 && newUserName.value.length !== 0 && newUserPass.value.length !== 0) {
-        auth.createUserWithEmailAndPassword(newUserEmail.value, newUserPass.value).catch(function(error) {
-            console.log('register error', error);
-            if(error.code === 'auth/email-already-in-use' || error.code === 'auth/weak-password') {
-                alert(error.message);
-            }
-        });
+    const newUserPass = document.getElementsByName('signUpInput')[1];
+    const newUserConfPass = document.getElementsByName('signUpInput')[2];
+    if (newUserEmail.value.length !== 0 && newUserConfPass.value.length !== 0 && newUserPass.value.length !== 0) {
+        if (newUserPass.value !== newUserConfPass.value) {
+            alert("Passwords aren't the same");
+        } else {
+            auth.createUserWithEmailAndPassword(newUserEmail.value, newUserPass.value)
+                .then(function () {
+                    newAccModal.style.display = 'block';
+                })
+                .catch(function (error) {
+                    console.log('register error', error);
+                    if (error.code === 'auth/email-already-in-use' || error.code === 'auth/weak-password') {
+                        alert(error.message);
+                    }
+                });
+        }
     } else {
         alert('Something gone wrong, check all fields')
     }
 }
 
-auth.onAuthStateChanged(firebaseUser =>{
+window.onclick = function (event) {
+    if (event.target === newAccModal || event.target === document.getElementsByClassName('created-acc-scr')[0]) {
+        location.reload();
+    }
+}
+
+/*auth.onAuthStateChanged(firebaseUser =>{
     if(firebaseUser){
         console.log(firebaseUser);
     } else {
         console.log('not logged in');
     }
-})
+})*/
 
 function recoveryPassword() {
-    firebaseUser(document.getElementsByName('recPassInput')[0].value, 
-    'Sent new password.',
-    document.getElementsByName('recPassInput')[1].value, 
-    'Email');
+    firebaseUser(document.getElementsByName('recPassInput')[0].value,
+        'Sent new password.',
+        document.getElementsByName('recPassInput')[1].value,
+        'Email');
 }

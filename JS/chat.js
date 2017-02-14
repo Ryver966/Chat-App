@@ -16,6 +16,8 @@ const DBRef = firebase.database();
     nameInput = document.getElementsByClassName('welcome-scr-form-input')[0];
     createServerScr = document.getElementsByClassName('create-server')[0];
     joinServerScr = document.getElementsByClassName('join-server')[0];
+    serverId = document.getElementsByName('channels')[0];
+    msgPlace = document.getElementsByClassName('messages-place')[0];
 
 function pressEnter(event, element){
     if(event.keyCode === 13){
@@ -51,6 +53,23 @@ function createServerWindow() {
     createServerScr.style.display = 'block';
 };
 
+function displayMsg(){
+    console.log(serverId.innerHTML);
+    DBRef.ref(`Servers/${serverId.innerHTML}/messages`).on('child_added', function(snapshot) {
+        const snap = snapshot.val();
+        const message = document.createElement('p');
+        message.className = 'msg';
+        message.innerHTML = `<span style='color:#F97400;'>${snap.UserName}:</span> ${snap.Msg}`;
+        msgPlace.appendChild(message);
+    })
+}
+
+function goToServer(){
+    serverId.innerHTML = this.name;
+    msgPlace.innerHTML = '';
+    displayMsg();
+}
+console.log(serverId.innerHTML);
 function addServerBtnToList(){
     DBRef.ref('Servers/').on('child_added', function(snapshot) {
         const snap = snapshot.val();
@@ -59,6 +78,7 @@ function addServerBtnToList(){
         newServerBtn.type = 'button';
         newServerBtn.className = 'server-btn';
         newServerBtn.name = snap.Name;
+        newServerBtn.onclick = goToServer;
         newServerBtn.value = snap.Name.charAt(0).toUpperCase();
         list.appendChild(document.createElement('br'));
         list.appendChild(newServerBtn);
@@ -66,7 +86,10 @@ function addServerBtnToList(){
 };
 function newServer(name) {
     if(name.length !== 0){
-        DBRef.ref('Servers/' + name).set({Name: name});
+        DBRef.ref('Servers/' + name).set({
+            Name: name,
+            messages: 'messages'
+        });
         alert('Server Created')
     } else {
         alert("Server name field can't be empty");
@@ -90,30 +113,18 @@ function joinServer(){
 }
 
 function createMsgInDatabase(name, msg){
-    DBRef.ref(`message`).push({
+    DBRef.ref(`Servers/${serverId.innerHTML}/messages`).push({
         UserName: name,
         Msg: msg
     })
 };
 
-function displayMsg(){
-    DBRef.ref(`message`).on('child_added', function(snapshot) {
-        const snap = snapshot.val();
-        console.log(snap.Msg);
-        const msgPlace = document.getElementsByClassName('messages-place')[0];
-        const message = document.createElement('p');
-        message.className = 'msg';
-        message.innerHTML = `<span style='color:#F97400;'>${snap.UserName}:</span> ${snap.Msg}`;
-        msgPlace.appendChild(message);
-    })
-}
-
 function sendMsg() {
     const msgInput = document.getElementsByName('ChatInput')[0];
+    const serverId = document.getElementsByName('channels')[0];
     createMsgInDatabase(nameInput.value, msgInput.value);
     msgInput.value = '';
 }
-displayMsg();
 
 function signOut() {
     auth.signOut();

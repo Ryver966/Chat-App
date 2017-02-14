@@ -9,18 +9,13 @@ const config = {
 firebase.initializeApp(config);
 
 const DBRef = firebase.database();
-const modal = document.getElementsByClassName('modal')[0];
-const modalContent = document.getElementsByClassName('modal-content')[0];
-const userName = document.getElementsByName('userInput')[0];
-const auth = firebase.auth();
-auth.onAuthStateChanged(firebaseUser =>{
-    if(firebaseUser){
-        console.log(firebaseUser);
-    } else {
-        console.log('not logged in');
-    }
-});
-const nameInput = document.getElementsByClassName('welcome-scr-form-input')[0];
+    modal = document.getElementsByClassName('modal')[0];
+    modalContent = document.getElementsByClassName('modal-content')[0];
+    userName = document.getElementsByName('userInput')[0];
+    auth = firebase.auth();
+    nameInput = document.getElementsByClassName('welcome-scr-form-input')[0];
+    createServerScr = document.getElementsByClassName('create-server')[0];
+    joinServerScr = document.getElementsByClassName('join-server')[0];
 
 function pressEnter(event, element){
     if(event.keyCode === 13){
@@ -45,39 +40,48 @@ function addServerWindow(){
 window.onclick = function(event) {
     if(event.target === modal){
         modal.style.display = 'none';
+        createServerScr.style.display = 'none';
+        joinServerScr.style.display = 'none';
+        modalContent.style.display = 'block';
     };
 };
 
 function createServerWindow() {
     modalContent.style.display = 'none';
-    document.getElementsByClassName('create-server')[0].style.display = 'block';
+    createServerScr.style.display = 'block';
 };
 
-function addServerBtnToList(name){
-    const list = document.getElementsByClassName('servers-and-user')[0];
-    const newServerBtn = document.createElement('input');
-    newServerBtn.type = 'button';
-    newServerBtn.className = 'server-btn';
-    newServerBtn.name = name;
-    newServerBtn.value = name.charAt(0).toUpperCase();
-    list.appendChild(document.createElement('br'));
-    list.appendChild(newServerBtn);
+function addServerBtnToList(){
+    DBRef.ref('Servers/').on('child_added', function(snapshot) {
+        const snap = snapshot.val();
+        const list = document.getElementsByClassName('servers-and-user')[0];
+        const newServerBtn = document.createElement('input');
+        newServerBtn.type = 'button';
+        newServerBtn.className = 'server-btn';
+        newServerBtn.name = snap.Name;
+        newServerBtn.value = snap.Name.charAt(0).toUpperCase();
+        list.appendChild(document.createElement('br'));
+        list.appendChild(newServerBtn);
+        });
 };
-
-function createServer() {
-    const newServerName = document.getElementsByClassName('create-server-input')[0];
-    if(newServerName.value.length !== 0){
-        DBRef.ref('Servers/' + newServerName.value).set({Canals: 'Canals'});
-        addServerBtnToList(newServerName.value);
+function newServer(name) {
+    if(name.length !== 0){
+        DBRef.ref('Servers/' + name).set({Name: name});
         alert('Server Created')
     } else {
         alert("Server name field can't be empty");
     };
 };
+addServerBtnToList();
+
+function createServer(){
+    const newServerName = document.getElementsByClassName('create-server-input')[0];
+    newServer(newServerName.value);
+}
 
 function joinServerWindow() {
     modalContent.style.display = 'none';
-    document.getElementsByClassName('join-server')[0].style.display = 'block';
+    joinServerScr.style.display = 'block';
 };
 
 function joinServer(){

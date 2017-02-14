@@ -20,19 +20,6 @@ function pressEnter(event, element) {
 
 const firebaseRef = firebase.database();
 
-function firebaseUser(name, msg, checker, userVal) {
-    firebaseRef.ref('Users/' + name + '/' + userVal).on('value', (snapshot) => {
-        if (checker !== (snapshot).val()) {
-            alert('Something gone wrong. Please check fields.');
-        }
-        alert(msg);
-        if (userVal === 'Password') {
-            window.location.href = './chat.html';
-        }
-    })
-
-}
-
 function signIn() {
     const userName = document.getElementsByName('userInput')[0];
     const pass = document.getElementsByName('userInput')[1];
@@ -85,19 +72,4 @@ window.onclick = function (event) {
     if (event.target === newAccModal || event.target === document.getElementsByClassName('created-acc-scr')[0]) {
         location.reload();
     }
-}
-
-/*auth.onAuthStateChanged(firebaseUser =>{
-    if(firebaseUser){
-        console.log(firebaseUser);
-    } else {
-        console.log('not logged in');
-    }
-})*/
-
-function recoveryPassword() {
-    firebaseUser(document.getElementsByName('recPassInput')[0].value,
-        'Sent new password.',
-        document.getElementsByName('recPassInput')[1].value,
-        'Email');
 }

@@ -43,7 +43,6 @@ window.onclick = function(event) {
     if(event.target === modal){
         modal.style.display = 'none';
         createServerScr.style.display = 'none';
-        joinServerScr.style.display = 'none';
         modalContent.style.display = 'block';
     };
 };
@@ -53,23 +52,6 @@ function createServerWindow() {
     createServerScr.style.display = 'block';
 };
 
-function displayMsg(){
-    console.log(serverId.innerHTML);
-    DBRef.ref(`Servers/${serverId.innerHTML}/messages`).on('child_added', function(snapshot) {
-        const snap = snapshot.val();
-        const message = document.createElement('p');
-        message.className = 'msg';
-        message.innerHTML = `<span style='color:#F97400;'>${snap.UserName}:</span> ${snap.Msg}`;
-        msgPlace.appendChild(message);
-    })
-}
-
-function goToServer(){
-    serverId.innerHTML = this.name;
-    msgPlace.innerHTML = '';
-    displayMsg();
-}
-console.log(serverId.innerHTML);
 function addServerBtnToList(){
     DBRef.ref('Servers/').on('child_added', function(snapshot) {
         const snap = snapshot.val();
@@ -102,16 +84,6 @@ function createServer(){
     newServer(newServerName.value);
 }
 
-function joinServerWindow() {
-    modalContent.style.display = 'none';
-    joinServerScr.style.display = 'block';
-};
-
-function joinServer(){
-    const joinServerInput = document.getElementsByClassName('create-server-input')[1];
-    DBRef.ref('Servers/' + joinServerInput + '/Members').set({})
-}
-
 function createMsgInDatabase(name, msg){
     DBRef.ref(`Servers/${serverId.innerHTML}/messages`).push({
         UserName: name,
@@ -119,11 +91,29 @@ function createMsgInDatabase(name, msg){
     })
 };
 
+function displayMsg(roomID){
+    console.log(roomID.innerHTML);
+    DBRef.ref(`Servers/${roomID.innerHTML}/messages`).on('child_added', function(snapshot) {
+        const snap = snapshot.val();
+        const message = document.createElement('p');
+        message.className = 'msg';
+        message.innerHTML = `<span style='color:#F97400;'>${snap.UserName}:</span> ${snap.Msg}`;
+        msgPlace.appendChild(message);
+    })
+}
+
 function sendMsg() {
     const msgInput = document.getElementsByName('ChatInput')[0];
     const serverId = document.getElementsByName('channels')[0];
     createMsgInDatabase(nameInput.value, msgInput.value);
     msgInput.value = '';
+}
+
+function goToServer(){
+    serverId.innerHTML = this.name;
+    msgPlace.innerHTML = '';
+    console.log(serverId.innerHTML);
+    displayMsg(serverId);
 }
 
 function signOut() {

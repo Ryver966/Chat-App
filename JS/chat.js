@@ -92,7 +92,7 @@ function createMsgInDatabase(name, msg) {
 };
 
 function displayMsg() {
-    DBRef.ref(`Servers/${serverId.innerHTML}/messages`).limitToFirst(1).on('child_added', function (snapshot) {
+    DBRef.ref(`Servers/${serverId.innerHTML}/messages`).on('child_added', function (snapshot) {
         const snap = snapshot.val();
         console.log(snapshot.key);
         const message = document.createElement('p');
@@ -114,6 +114,7 @@ function goToServer() {
     if (this.name !== serverId.innerHTML) {
         serverId.innerHTML = this.name;
         msgPlace.innerHTML = '';
+        DBRef.ref(`Servers/${serverId.innerHTML}/messages`).off('child_added');
         displayMsg();
     } else {
         console.log('nothing');

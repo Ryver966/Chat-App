@@ -1,0 +1,26 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^3.5.0"
+  },
+  "devDependencies": {
+    "firebase-server": "^0.9.0",
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryver966/Chat-App.git"
+  },
+  "author": "Ryver966",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryver966/Chat-App/issues"
+  },
+  "homepage": "https://github.com/Ryver966/Chat-App#readme"
+}

@@ -126,13 +126,3 @@ function signOut() {
     auth.signOut();
     window.location.href = './login_screen.html';
 }
-
-module.exports = {
-    goChat: goChat,
-    addServerWindow: addServerWindow,
-    createServerWindow: createServerWindow,
-    newServer: newServer,
-    sendMsg, sendMsg,
-    createMsgInDatabase: createMsgInDatabase,
-    goToServer: goToServer
-}
